@@ -77,8 +77,17 @@
                 <configuration>
                     <protocVersion>${protobuf.version}</protocVersion>
                     <protocExecutable>/usr/local/protoc/bin/protoc</protocExecutable>
-                    <pluginId>grpc-java</pluginId>
-                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}</pluginArtifact>
+                    <protocPlugins>
+                        <protocPlugin>
+                            <id>grpc-java</id>
+                            <groupId>io.grpc</groupId>
+                            <artifactId>protoc-gen-grpc-java</artifactId>
+                            <version>${grpc.version}</version>
+                            <type>exe</type>
+                            <classifier>linux-x86_64</classifier>
+                            <executable>/usr/local/bin/protoc-gen-grpc-java</executable>
+                        </protocPlugin>
+                    </protocPlugins>
                 </configuration>
                 <executions>
                     <execution>
