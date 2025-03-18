@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+    tools {
+        git 'git'
+        maven 'maven'
+    }
+    stages {
+        stage('Checkout SCM') {
+            steps {
+                git branch: 'main', url: 'https://github.com/honey1417/micro-svcs-deploy.git'
+            }
+        }
+        
+        stage('Setup Dependencies') {
+            steps {
+                dir('src/adservice') {  
+                    sh '''
+                        if [ ! -f ~/.m2/repository/io/grpc/protoc-gen-grpc-java/1.55.1/protoc-gen-grpc-java-1.55.1.exe ]; then
+                            mvn install:install-file \
+                                -DgroupId=io.grpc \
+                                -DartifactId=protoc-gen-grpc-java \
+                                -Dversion=1.55.1 \
+                                -Dpackaging=exe \
+                                -Dfile=/usr/local/bin/protoc-gen-grpc
+                        fi
+                    ''' 
+                }
+            }
+        }
+        stage('Build & Package Artifact') {
+            steps {
+                dir('src/adservice') {  
+                    sh '''
+                    mvn clean install -U
+                    mvn clean compile 
+                    mvn clean package -DskipTests
+                    '''
+                    
+                }
+            }
+        }
+         stage('Deploy to Nexus') {
+            steps {
+                dir('src/adservice') {
+                    sh 'mvn deploy -DaltDeploymentRepository=nexus::default::http://34.72.222.210:8081/repository/adservice/ -DskipTests -X'
+                }
+            }
+        }
+        
+    }
+}
+
+        
+    
+
