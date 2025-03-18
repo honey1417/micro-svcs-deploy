@@ -76,15 +76,8 @@
                 <version>0.6.1</version>
                 <configuration>
                     <protocExecutable>/usr/local/protoc/bin/protoc</protocExecutable>
-                    <protocPlugins>
-                        <protocPlugin>
-                            <id>grpc-java</id>
-                            <groupId>io.grpc</groupId>
-                            <artifactId>protoc-gen-grpc-java</artifactId>
-                            <version>1.55.1</version>
-                            <executable>/usr/local/bin/protoc-gen-grpc-java</executable>
-                        </protocPlugin>
-                    </protocPlugins>
+                    <pluginId>grpc-java</pluginId>
+                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.55.1:exe</pluginArtifact>
                 </configuration>
                 <executions>
                     <execution>
