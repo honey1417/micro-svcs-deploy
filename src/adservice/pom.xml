@@ -76,6 +76,7 @@
                 <version>0.6.1</version>
                 <configuration>
                     <protocVersion>${protobuf.version}</protocVersion>
+                    <protocExecutable>/usr/local/protoc/bin/protoc</protocExecutable>
                     <pluginId>grpc-java</pluginId>
                     <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc.version}</pluginArtifact>
                 </configuration>
