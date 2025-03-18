@@ -38,11 +38,6 @@
             <artifactId>grpc-services</artifactId>
             <version>${grpc.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.grpc</groupId>
-            <artifactId>grpc-health-check</artifactId>
-            <version>${grpc.version}</version>
-        </dependency>
 
         <!-- Protobuf dependencies -->
         <dependency>
@@ -108,4 +103,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
