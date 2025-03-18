@@ -72,6 +72,19 @@
     </dependencies>
 
     <build>
+    <distributionManagement>
+        <repository>
+            <id>nexus</id>  
+            <name>Release Repos</name>
+            <url>http://34.72.222.210:8081/repository/my-usecase1-release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>Snapshot Repos</name>
+            <url>http://34.72.222.210:8081/repository/adservice/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
         <plugins>
             <!-- Compiler Plugin -->
             <plugin>
