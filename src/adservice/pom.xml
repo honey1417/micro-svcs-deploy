@@ -90,9 +90,9 @@
                 <artifactId>protobuf-maven-plugin</artifactId>
                 <version>0.6.1</version>
                 <configuration>
-                    <protocExecutable>/usr/local/protoc/bin/protoc</protocExecutable>
+                    <protocExecutable>/usr/local/bin/protoc</protocExecutable>
                     <pluginId>grpc-java</pluginId>
-                    <pluginArtifact>io.grpc:protoc-gen-grpc:1.55.1</pluginArtifact>
+                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.55.1:exe</pluginArtifact>
                 </configuration>
                 <executions>
                     <execution>
@@ -105,5 +105,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
