@@ -25,6 +25,7 @@ import hipstershop.Demo.AdResponse;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.StatusRuntimeException;
+import io.grpc.protobuf.services.ProtoReflectionService; 
 import io.grpc.health.v1.HealthCheckResponse.ServingStatus;
 import io.grpc.services.*;
 import io.grpc.stub.StreamObserver;
@@ -58,6 +59,7 @@ public final class AdService {
         ServerBuilder.forPort(port)
             .addService(new AdServiceImpl())
             .addService(healthMgr.getHealthService())
+            .addService(ProtoReflectionService.newInstance())
             .build()
             .start();
     logger.info("Ad Service started, listening on " + port);
