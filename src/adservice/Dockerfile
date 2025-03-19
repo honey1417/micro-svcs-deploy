@@ -13,7 +13,7 @@ COPY target/adservice-1.0-SNAPSHOT.jar /adservice/adservice.jar
 
 
 # Expose the port your app runs on (if applicable)
-EXPOSE 8090
+EXPOSE 9555
 
 # Run the JAR
 #ENTRYPOINT ["java", "-jar", "/adservice/adservice.jar"]
