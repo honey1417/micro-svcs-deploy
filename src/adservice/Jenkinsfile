@@ -49,13 +49,13 @@ pipeline {
         //         }
         //     }
         // }
-        
+
         stage('Build Docker Image') {
             steps {
                 script {
                     withDockerRegistry([credentialsId: 'docker-creds', url: 'https://index.docker.io/v1/']) {
                         dir('src/adservice') {  // Ensure we're in the correct directory
-                            sh "docker build -t $DOCKER_HUB_USR/micro-services-demo:adsvc-1.0 ."
+                            sh "docker build -t $DOCKER_HUB_USR/micro-services-demo:adsvc-1.1 ."
                         }
                     }
                 }
@@ -65,7 +65,18 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry([credentialsId: 'docker-creds', url: 'https://index.docker.io/v1/']) {
-                        sh "docker push $DOCKER_HUB_USR/micro-services-demo:adsvc-1.0"
+                        sh "docker push $DOCKER_HUB_USR/micro-services-demo:adsvc-1.1"
+                    }
+                }
+            }
+        }
+        stage('Deploy to Docker Container ') {
+            steps {
+                script {
+                    withDockerRegistry([credentialsId: 'docker-creds', url: 'https://index.docker.io/v1/']) {
+                        sh "docker pull $DOCKER_HUB_USR/micro-services-demo:adsvc-1.1"
+                        sh "docker run -d --name adservice-cont1 -p 8090:8090 harshini1402/micro-services-demo:adsvc-1.1"
+
                     }
                 }
             }
